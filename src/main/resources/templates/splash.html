@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
-        <title>Sistem Penjualan ATK</title>
-        <link rel="stylesheet" type="text/css" th:href="@{/css/splash.css}"/>
-        <link rel="icon" type="image/x-icon" th:href="@{/img/favicon.ico}"/>
+        <title th:text="${pageTitle}"></title>
         <script type="text/javascript" th:src="@{/js/splash.js}"></script>
+        <link rel="icon" type="image/x-icon" th:href="@{/img/favicon.ico}"/>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/splash.css}"/>
     </head>
     <body>
         <div class="splash-container">
-            <img th:src="@{/img/splash.png}"/>
-            <h1>Sistem Penjualan Alat Tulis Kantor</h1>
+            <img th:src="@{/img/logo.png}"/>
+            <h1 th:text="${pageTitle}"></h1>
             <div class="splash-spinner"></div>
         </div>
     </body>

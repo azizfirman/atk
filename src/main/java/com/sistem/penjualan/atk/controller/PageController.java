@@ -35,4 +35,9 @@ public class PageController {
     public String transaksiPage() {
         return "transaksi";
     }
+
+    @GetMapping("/laporan")
+    public String laporanPage() {
+        return "laporan";
+    }
 }

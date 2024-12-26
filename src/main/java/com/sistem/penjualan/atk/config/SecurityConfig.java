@@ -8,28 +8,41 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+import com.sistem.penjualan.atk.util.Constant;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
+
+    // @Bean
+    // @Primary
+    // UserDetailsService userDetailsService() {
+    //     return new CustomUserDetailService();
+    // }
 
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
              // Authorize request
             .authorizeHttpRequests(authorizeHttpRequests -> authorizeHttpRequests
+            .requestMatchers(Constant.Security.permitAll()).permitAll()
+
             // .requestMatchers("/api/barang/**", "/api/pelanggan/**", "/api/transaksi/**").hasAnyRole("ADMIN", "USER")
             // .requestMatchers("/", "/login", "/api-docs/**", "/swagger-ui.html").permitAll()
-            .requestMatchers("/", "/css/**", "/js/**", "/img/**").permitAll()
-            // .requestMatchers("/api/pengguna/**").hasRole("ADMIN")
+            .requestMatchers("/api/pengguna/**").hasRole("ADMIN")
             .anyRequest().authenticated())
 
             // Configure session management
-            // .sessionManagement(sessionManagement -> sessionManagement
-            // .maximumSessions(1).expiredUrl("/login?expired"))
+            .sessionManagement(sessionManagement -> sessionManagement
+            .maximumSessions(1).expiredUrl("/login?expired"))
 
             // Configure form login and logout
-            // .formLogin(formLogin -> formLogin.loginPage("/login").permitAll())
-            // .logout(logout -> logout.permitAll())
+            .formLogin(formLogin -> formLogin
+                .loginPage("/login")
+                .failureUrl("/login?error=true")
+                // .defaultSuccessUrl("/home", true)
+                .permitAll())
+            .logout(logout -> logout.permitAll())
             .build();
     }
 
@@ -37,9 +50,4 @@ public class SecurityConfig {
     PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
-    // @Bean
-    // public UserDetailsService userDetailsService() {
-    //     // return new CustomUserDetailsService();
-    // }
 }
