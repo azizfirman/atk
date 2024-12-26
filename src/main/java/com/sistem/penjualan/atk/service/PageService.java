@@ -13,6 +13,6 @@ public class PageService {
         if(authentication.isAuthenticated() && !authentication.getPrincipal().equals("anonymousUser")) {
             return "redirect:/barang";
         }
-        return "login";
+        return "pages/login";
     }
 }

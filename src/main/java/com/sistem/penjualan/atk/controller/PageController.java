@@ -14,7 +14,7 @@ public class PageController {
 
     @GetMapping("/")
     public String splashPage() {
-        return "splash";
+        return "pages/splash";
     }
 
     @GetMapping("/login")

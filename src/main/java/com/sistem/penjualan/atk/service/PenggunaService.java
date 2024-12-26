@@ -35,7 +35,7 @@ public class PenggunaService {
             Optional.ofNullable(pengguna.getPhoto()).ifPresent(data::setPhoto);
 
             return penggunaRepository.save(data);
-        }).orElse(null);
+        }).orElse(new Pengguna());
     }
 
     public void deletePengguna(UUID idPengguna) {
