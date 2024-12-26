@@ -12,5 +12,4 @@ import com.sistem.penjualan.atk.entity.Pengguna;
 public interface PenggunaRepository extends JpaRepository<Pengguna, UUID> {
 
     Optional<Pengguna> findByUsername(String username);
-
 }

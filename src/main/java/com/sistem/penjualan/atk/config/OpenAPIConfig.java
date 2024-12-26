@@ -15,8 +15,8 @@ public class OpenAPIConfig {
     @Bean
     OpenAPI openAPI() {
         return new OpenAPI().info(
-            new Info().title(Constant.PAGE_TITLE)
-                .description("Ini adalah project ".concat(Constant.PAGE_TITLE))
+            new Info().title(Constant.Text.TITLE)
+                .description("Ini adalah project ".concat(Constant.Text.TITLE))
                 .contact(new Contact().name("Firman").email("aziz.firman@prosia.co.id"))
         );
     }

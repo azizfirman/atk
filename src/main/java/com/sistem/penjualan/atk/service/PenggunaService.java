@@ -28,6 +28,16 @@ public class PenggunaService {
         return penggunaRepository.save(pengguna);
     }
 
+    public Pengguna updatePengguna(Pengguna pengguna) {
+        return penggunaRepository.findById(pengguna.getIdPengguna()).map(data -> {
+            Optional.ofNullable(pengguna.getNamaPengguna()).ifPresent(data::setNamaPengguna);
+            Optional.ofNullable(pengguna.getPassword()).ifPresent(data::setPassword);
+            Optional.ofNullable(pengguna.getPhoto()).ifPresent(data::setPhoto);
+
+            return penggunaRepository.save(data);
+        }).orElse(null);
+    }
+
     public void deletePengguna(UUID idPengguna) {
         penggunaRepository.deleteById(idPengguna);
     }

@@ -14,22 +14,12 @@ import com.sistem.penjualan.atk.util.Constant;
 @EnableWebSecurity
 public class SecurityConfig {
 
-    // @Bean
-    // @Primary
-    // UserDetailsService userDetailsService() {
-    //     return new CustomUserDetailService();
-    // }
-
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
-             // Authorize request
+            // Authorize request
             .authorizeHttpRequests(authorizeHttpRequests -> authorizeHttpRequests
             .requestMatchers(Constant.Security.permitAll()).permitAll()
-
-            // .requestMatchers("/api/barang/**", "/api/pelanggan/**", "/api/transaksi/**").hasAnyRole("ADMIN", "USER")
-            // .requestMatchers("/", "/login", "/api-docs/**", "/swagger-ui.html").permitAll()
-            .requestMatchers("/api/pengguna/**").hasRole("ADMIN")
             .anyRequest().authenticated())
 
             // Configure session management
@@ -38,10 +28,12 @@ public class SecurityConfig {
 
             // Configure form login and logout
             .formLogin(formLogin -> formLogin
-                .loginPage("/login")
-                .failureUrl("/login?error=true")
-                // .defaultSuccessUrl("/home", true)
-                .permitAll())
+            .defaultSuccessUrl("/barang", true)
+            .failureUrl("/login?error=true")
+            .loginPage("/login")
+            .permitAll())
+
+            // Configure logout and build
             .logout(logout -> logout.permitAll())
             .build();
     }
