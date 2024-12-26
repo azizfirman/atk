@@ -1,9 +1,9 @@
-document.addEventListener("DOMContentLoaded", function() {
-    const errorMessage = document.getElementById("error-message");
+$(document).ready(function() {
+    const errorMessage = $("#error-message");
 
-    if (errorMessage) {
-        setTimeout(() => {
-            errorMessage.style.display = "none";
+    if (errorMessage.length) {
+        setTimeout(function() {
+            errorMessage.hide();
             const url = new URL(window.location);
 
             url.searchParams.delete("error");

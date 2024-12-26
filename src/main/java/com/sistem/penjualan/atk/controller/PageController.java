@@ -1,10 +1,16 @@
 package com.sistem.penjualan.atk.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.sistem.penjualan.atk.service.PageService;
+
 @Controller
 public class PageController {
+
+    @Autowired
+    private PageService pageService;
 
     @GetMapping("/")
     public String splashPage() {
@@ -13,7 +19,7 @@ public class PageController {
 
     @GetMapping("/login")
     public String loginPage() {
-        return "login";
+        return pageService.getLogin();
     }
 
     @GetMapping("/pengguna")
