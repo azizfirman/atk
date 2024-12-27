@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.sistem.penjualan.atk.entity.Pengguna;
 import com.sistem.penjualan.atk.service.PenggunaService;
@@ -35,7 +37,7 @@ public class PenggunaController {
     }
 
     @PostMapping
-    public Pengguna savePengguna(@RequestBody Pengguna pengguna) {
+    public Pengguna savePengguna(@RequestPart Pengguna pengguna, @RequestPart MultipartFile photo) {
         return penggunaService.savePengguna(pengguna);
     }
 

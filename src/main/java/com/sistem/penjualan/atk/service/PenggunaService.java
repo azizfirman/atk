@@ -33,7 +33,6 @@ public class PenggunaService {
             Optional.ofNullable(pengguna.getNamaPengguna()).ifPresent(data::setNamaPengguna);
             Optional.ofNullable(pengguna.getPassword()).ifPresent(data::setPassword);
             Optional.ofNullable(pengguna.getPhoto()).ifPresent(data::setPhoto);
-
             return penggunaRepository.save(data);
         }).orElse(new Pengguna());
     }

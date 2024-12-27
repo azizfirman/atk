@@ -50,6 +50,7 @@ public class AdviceController {
             if(pengguna != null) {
                 model.addAttribute("photo", pengguna.getPhoto());
                 model.addAttribute("username", pengguna.getUsername());
+                model.addAttribute("idPengguna", pengguna.getIdPengguna());
                 model.addAttribute("namaPengguna", pengguna.getNamaPengguna());
                 model.addAttribute("isAdmin", pengguna.getLevel().equals("ADMIN"));
             }

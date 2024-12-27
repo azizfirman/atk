@@ -22,9 +22,14 @@ public class PageController {
         return pageService.getLogin();
     }
 
+    @GetMapping("/home")
+    public String homePage() {
+        return "pages/home";
+    }
+
     @GetMapping("/pengguna")
     public String penggunaPage() {
-        return "pengguna";
+        return "pages/pengguna";
     }
 
     @GetMapping("/barang")
@@ -34,16 +39,16 @@ public class PageController {
 
     @GetMapping("/pelanggan")
     public String pelangganPage() {
-        return "pelanggan";
+        return "pages/pelanggan";
     }
 
     @GetMapping("/transaksi")
     public String transaksiPage() {
-        return "transaksi";
+        return "pages/transaksi";
     }
 
     @GetMapping("/laporan")
     public String laporanPage() {
-        return "laporan";
+        return "pages/laporan";
     }
 }

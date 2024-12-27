@@ -12,9 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.sistem.penjualan.atk.entity.Barang;
 import com.sistem.penjualan.atk.service.BarangService;
@@ -37,14 +35,8 @@ public class BarangController {
     }
 
     @PostMapping
-    public Barang saveBarang(@RequestParam String namaBarang, @RequestParam String hargaBarang, @RequestParam String stokBarang, @RequestParam MultipartFile photoBarang) {
-    // public Barang saveBarang()
-        Barang barang = new Barang();
-        barang.setNamaBarang(namaBarang);
-        barang.setHargaBarang(Double.parseDouble(hargaBarang));
-        barang.setStok(Integer.parseInt(stokBarang));
-
-        return barangService.saveBarang(barang, photoBarang);
+    public Barang saveBarang(@RequestBody Barang barang) {
+        return barangService.saveBarang(barang);
     }
 
     @PutMapping

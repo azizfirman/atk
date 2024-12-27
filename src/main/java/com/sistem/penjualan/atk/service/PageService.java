@@ -11,7 +11,7 @@ public class PageService {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
         if(authentication.isAuthenticated() && !authentication.getPrincipal().equals("anonymousUser")) {
-            return "redirect:/barang";
+            return "redirect:/home";
         }
         return "pages/login";
     }
