@@ -1,0 +1,381 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #F0F4F8;
+    flex-direction: column;
+    min-height: 100vh;
+    display: flex;
+    padding: 0;
+    margin: 0;
+}
+
+.top-bar {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    justify-content: space-between;
+    background-color: #4A90E2;
+    align-items: center;
+    padding: 10px 20px;
+    position: sticky;
+    color: #FFFFFF;
+    display: flex;
+    z-index: 1;
+    top: 0;
+}
+.top-bar .left-section {
+    align-items: center;
+    display: flex;
+}
+.top-bar .menu {
+    margin-left: 20px;
+    display: flex;
+    gap: 20px;
+}
+.top-bar .menu a {
+    color: #FFFFFF;
+    font-weight: bold;
+    padding: 15px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+.top-bar .menu a:hover,
+.top-bar .menu a.active {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    background-color: rgba(0, 51, 102, 0.5);
+}
+
+.logo {
+    margin-right: 20px;
+}
+.logo img {
+    width: 50px;
+    height: 50px;
+}
+
+.search-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+.search-container input {
+    width: 35%;
+    border: none;
+    padding: 10px;
+    outline: none;
+    border-radius: 5px;
+}
+.search-container input::placeholder {
+    color: #B0BEC5;
+}
+
+.profile {
+    cursor: pointer;
+    position: relative;
+}
+.profile img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+}
+.profile-card {
+    right: 0;
+    width: 200px;
+    padding: 15px;
+    display: none;
+    color: #4A5568;
+    border-radius: 8px;
+    text-align: center;
+    position: absolute;
+    background-color: #FFFFFF;
+    border: 1px solid #E2E8F0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.profile-card div {
+    margin: 15px;
+    font-weight: bold;
+    font-size: medium;
+}
+.profile-card a {
+    padding: 5px;
+    font-size: 15px;
+    color: #4A90E2;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+.profile-card img {
+    width: 50px;
+    height: 50px;
+    display: block;
+    margin: 0 auto;
+    border-radius: 50%;
+}
+.profile-card button {
+    width: 100%;
+    border: none;
+    padding: 7px;
+    color: white;
+    cursor: pointer;
+    margin-top: 15px;
+    border-radius: 5px;
+    background-color: #FF4757;
+    transition: background-color 0.3s;
+}
+.profile-card button:hover {
+    background-color: #C0392B;
+}
+
+.content {
+    flex: 1;
+    padding: 20px;
+}
+
+.system-title {
+    flex-grow: 1;
+    font-size: 28px;
+    color: #2C3E50;
+    font-weight: bold;
+    margin-right: 20px;
+    font-family: 'Arial', sans-serif;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.btn-green {
+    float: right;
+    border: none;
+    color: white;
+    cursor: pointer;
+    margin-top: 10px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: #28A745;
+    transition: background-color 0.3s;
+}
+.btn-green:hover {
+    background-color: #218838;
+}
+
+.overlay {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    display: none;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.popup {
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    z-index: 100;
+    padding: 20px;
+    display: none;
+    position: fixed;
+    border-radius: 10px;
+    animation: fadeIn 0.3s;
+    background-color: #FFF;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+.popup .icon-close {
+    top: 10px;
+    right: 10px;
+    border: none;
+    cursor: pointer;
+    font-size: 35px;
+    background: none;
+    color: #dc3545;
+    position: absolute;
+}
+.icon-close:hover {
+    color: #c82333;
+    border-radius: 25px;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+.popup h3 {
+    color: #333;
+    text-align: center;
+}
+.popup input,
+.popup textarea {
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #DDD;
+    width: calc(100% - 24px);
+    transition: border-color 0.3s;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+.popup input:focus,
+.popup textarea:focus {
+    outline: none;
+    border-color: #007BFF;
+}
+
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.file-upload {
+    width: 100%;
+    margin: 10px 0;
+    max-width: 400px;
+    position: relative;
+    display: inline-block;
+}
+.file-upload input[type="file"] {
+    display: none;
+}
+.file-upload label {
+    display: flex;
+    cursor: pointer;
+    border-radius: 5px;
+    padding-left: 12px;
+    align-items: center;
+    border: 1px solid #DDD;
+    transition: border-color 0.3s;
+    justify-content: space-between;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+.file-upload .file-name {
+    flex: 1;
+    color: #555;
+    font-size: 12px;
+    overflow: hidden;
+    margin-right: 10px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.file-upload .upload-btn {
+    border: none;
+    color: white;
+    font-size: 12px;
+    cursor: pointer;
+    padding: 12px;
+    border-radius: 5px;
+    background-color: #007bff;
+    transition: background-color 0.3s;
+}
+.file-upload label:hover {
+    border-color: #007bff;
+}
+.file-upload .upload-btn:hover {
+    background-color: #0056b3;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+.grid-item {
+    background-color: #FFFFFF; /* Warna latar belakang item */
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s; /* Transisi saat hover */
+    cursor: pointer; /* Menunjukkan bahwa item bisa diklik */
+}
+.grid-item:hover {
+    transform: scale(1.05); /* Efek zoom saat hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Bayangan lebih dalam saat hover */
+}
+.grid-item img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+.grid-item h3 {
+    margin: 10px 0;
+    color: #4A90E2; /* Warna judul barang */
+}
+.grid-item p {
+    color: #7F8C8D; /* Warna teks deskripsi */
+    margin: 5px 0;
+}
+.footer {
+    text-align: center;
+    background-color: #4A90E2; /* Warna footer cerah */
+    color: #FFFFFF; /* Warna teks putih */
+    /* padding: 10px 0; */
+}
+
+
+/* Popup Styles */
+/* .popup { */
+    /* display: none; Tersembunyi secara default */
+    /* position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 100;
+    padding: 20px;
+    width: 300px;
+} */
+/* .popup h3 {
+    margin-top: 0;
+    color: #4A90E2; /* Warna judul popup */
+/* } */
+/* .popup button {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #4A90E2; /* Warna tombol pada popup */
+    /* color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer; */
+    /* transition: background-color 0.3s; Transisi untuk tombol */
+/* }  */
+/* .popup button:hover { */
+    /* background-color: #357ABD; Warna saat hover pada tombol */
+/* }  */
+
+/* Tambahan untuk tombol tambah barang */
+
+/* Styles untuk popup tambah barang */
+
+
+
+
+
+
+/* Untuk Chrome, Safari, dan Edge */
+::-webkit-scrollbar {
+    width: 12px; /* Lebar scrollbar */
+}
+
+::-webkit-scrollbar-track {
+    background: #F0F4F8; /* Warna track scrollbar */
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #4A90E2; /* Warna thumb scrollbar */
+    /* border-radius: 10px; Bulatkan sudut thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #357ABD; /* Warna thumb saat hover */
+}

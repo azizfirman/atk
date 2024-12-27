@@ -1,0 +1,30 @@
+<div class="top-bar" th:fragment="header">
+    <div class="left-section">
+        <div class="logo">
+            <img th:src="@{/img/logo.png}"/>
+        </div>
+
+        <div class="menu">
+            <a href="/barang" th:text="${beranda}"></a>
+            <a href="/transaksi" th:text="${transaksi}"></a>
+            <a href="/pelanggan" th:text="${pelanggan}"></a>
+        </div>
+    </div>
+
+    <div class="search-container">
+        <input type="text" id="search-input" th:placeholder="${cariBarang}"/>
+    </div>
+
+    <div class="profile">
+        <img th:src="${photo != null ? photo : '/img/avatar.png'}"/>
+        <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
+
+        <div class="profile-card" id="profile-card">
+            <img th:src="${photo != null ? photo : '/img/avatar.png'}">
+            <div th:text="${namaPengguna}"></div>
+
+            <a href="/pengguna" th:text="${aturPengguna}" th:if="${isAdmin}"></a>
+            <button th:text="${logout}" id="logout"></button>
+        </div>
+    </div>
+</div>

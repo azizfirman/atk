@@ -18,6 +18,7 @@ public class Barang {
     private UUID idBarang;
     private String namaBarang;
     private double hargaBarang;
+    private String photo;
     private int stok;
 
     @ManyToOne

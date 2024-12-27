@@ -29,7 +29,7 @@ public class PageController {
 
     @GetMapping("/barang")
     public String barangPage() {
-        return "barang";
+        return "pages/barang";
     }
 
     @GetMapping("/pelanggan")
