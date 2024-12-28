@@ -28,7 +28,7 @@ public class SecurityConfig {
 
             // Configure form login and logout
             .formLogin(formLogin -> formLogin
-            .defaultSuccessUrl("/barang", true)
+            .defaultSuccessUrl("/home", true)
             .failureUrl("/login?error=true")
             .loginPage("/login")
             .permitAll())

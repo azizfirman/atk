@@ -1,0 +1,26 @@
+<div class="top-bar navbar bg-white mb-4 static-top shadow" th:fragment="topbar">
+    <div class="top-bar-title" th:text="${title}"></div>
+    <span class="top-bar-user" th:text="${namaPengguna}"></span>
+
+    <div class="user-profile">
+        <img th:src="${photo != null ? photo : '/img/avatar.png'}">
+        <i class="user-information bi bi bi-chevron-down"></i>
+
+        <div class="profile-card">
+            <a href="/profil">
+                <i class="bi bi-person"></i>
+                <span class="text" th:text="${profil}"></span>
+            </a>
+
+            <a href="/pengguna">
+                <i class="bi bi-person-gear"></i>
+                <span class="text" th:text="${aturPengguna}"></span>
+            </a>
+
+            <a href="/logout">
+                <i class="bi bi-box-arrow-right"></i>
+                <span class="text" th:text="${logout}"></span>
+            </a>
+        </div>
+    </div>
+</div>

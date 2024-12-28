@@ -1,0 +1,38 @@
+<div class="d-flex" th:fragment="sidebar">
+  <nav class="sidebar">
+    <div class="logo">
+      <img th:src="@{/img/logo.png}"/>
+    </div>
+
+    <div class="menu mt-4">
+      <a href="/home">
+        <i class="bi bi-house"></i>
+        <span class="text" th:text="${beranda}"></span>
+      </a>
+
+      <a href="/barang">
+        <i class="bi bi-box"></i>
+        <span class="text" th:text="${barang}"></span>
+      </a>
+
+      <a href="/transaksi">
+        <i class="bi bi-cash-stack"></i>
+        <span class="text" th:text="${transaksi}"></span>
+      </a>
+
+      <a href="/pelanggan">
+        <i class="bi bi-people"></i>
+        <span class="text" th:text="${pelanggan}"></span>
+      </a>
+
+      <a href="/laporan">
+        <i class="bi bi-journal-text"></i>
+        <span class="text" th:text="${laporan}"></span>
+      </a>
+    </div>
+
+    <div class="toggle-btn">
+      <i class="bi bi-arrow-left-circle"></i>
+    </div>
+  </nav>
+</div>

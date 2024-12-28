@@ -37,6 +37,9 @@ public class AdviceController {
         model.addAttribute("fotoBarang", Constant.Text.FOTO_BARANG);
         model.addAttribute("upload", Constant.Text.UPLOAD);
         model.addAttribute("simpan", Constant.Text.SIMPAN);
+        model.addAttribute("barang", Constant.Text.BARANG);
+        model.addAttribute("laporan", Constant.Text.LAPORAN);
+        model.addAttribute("profil", Constant.Text.PROFIL);
     }
 
     @ModelAttribute
