@@ -142,7 +142,7 @@ public class TransaksiService {
     }
 
     public Page<Map<String, Object>> searchTransaksi(String cari, Pageable pageable) {
-        Specification<Transaksi> specification = (root, _, criterial) -> {
+        Specification<Transaksi> specification = (root, query, criterial) -> {
             var predicates = criterial.conjunction();
 
             if(!cari.isEmpty()) {
@@ -428,7 +428,7 @@ public class TransaksiService {
             String title = "Laporan Penjualan Alat Tulis Kantor";
             DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd MMMM yyyy");
             String currentDate = LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-            NumberFormat numberFormat = NumberFormat.getCurrencyInstance(Locale.of("id", "ID"));
+            NumberFormat numberFormat = NumberFormat.getCurrencyInstance(new Locale("id", "ID"));
             String[] headerValue = {"No", "Nomor Transaksi", "Tanggal Transaksi", "Nama Pelanggan", "Nama Barang", "Harga", "Jumlah", "Total", "Kasir"};
 
             int numberData = 0;
