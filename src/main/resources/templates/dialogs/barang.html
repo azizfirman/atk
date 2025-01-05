@@ -1,0 +1,33 @@
+<div th:fragment="barang" class="modal fade" id="tambahBarangModal" tabindex="-1" aria-labelledby="tambahBarangModalLabel" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modal-title">Tambah Barang</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="tambahBarangForm" novalidate>
+                    <div class="mb-3" id="namaBarang1">
+                        <label for="namaBarang" class="form-label">Nama Barang <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="namaBarang" required minlength="3" />
+                        <div class="invalid-feedback">Nama Barang wajib diisi minimal 3 karakter.</div>
+                    </div>
+                    <div class="mb-3" id="hargaBarang1">
+                        <label for="hargaBarang" class="form-label">Harga Barang <span class="text-danger">*</span></label>
+                        <input type="number" class="form-control" id="hargaBarang" required min="0" />
+                        <div class="invalid-feedback">Harga Barang wajib diisi dan tidak boleh negatif.</div>
+                    </div>
+                    <div class="mb-3" id="stok1">
+                        <label for="stok" class="form-label">Stok <span class="text-danger">*</span></label>
+                        <input type="number" class="form-control" id="stokBarang" required min="0" />
+                        <div class="invalid-feedback">Stok wajib diisi dan tidak boleh negatif.</div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button> -->
+                <button type="submit" class="btn btn-primary" id="simpanButton">Simpan</button>
+            </div>
+        </div>
+    </div>
+</div>

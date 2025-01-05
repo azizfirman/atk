@@ -1,0 +1,33 @@
+<div th:fragment="pelanggan" class="modal fade" id="tambahPelangganModal" tabindex="-1" aria-labelledby="tambahPelangganModalLabel" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modal-title">Tambah Pelanggan</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="tambahPelangganForm" novalidate>
+                    <div class="mb-3" id="namaPelanggan1">
+                        <label for="namaPelanggan" class="form-label">Nama Pelanggan <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="namaPelanggan" required minlength="3" />
+                        <div class="invalid-feedback">Nama Pelanggan wajib diisi minimal 3 karakter.</div>
+                    </div>
+                    <div class="mb-3" id="alamatPelanggan1">
+                        <label for="alamatPelanggan" class="form-label">Alamat <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="alamatPelanggan" required />
+                        <div class="invalid-feedback">Alamat wajib diisi.</div>
+                    </div>
+                    <div class="mb-3" id="telepon1">
+                        <label for="telepon" class="form-label">Telepon</label>
+                        <input type="number" class="form-control" id="teleponPelanggan" pattern="\d{10,15}" />
+                        <div class="invalid-feedback">Telepon harus antara 10 hingga 15 digit jika diisi.</div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button> -->
+                <button type="submit" class="btn btn-primary" id="simpanButton">Simpan</button>
+            </div>
+        </div>
+    </div>
+</div>

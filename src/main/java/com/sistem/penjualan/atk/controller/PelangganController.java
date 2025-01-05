@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sistem.penjualan.atk.entity.Pelanggan;
@@ -25,8 +27,8 @@ public class PelangganController {
     private PelangganService pelangganService;
 
     @GetMapping
-    public List<Pelanggan> getAllPelanggan() {
-        return pelangganService.getAllPelanggan();
+    public List<Pelanggan> getAllPelanggan(@RequestParam(required = false, defaultValue = "") String cari, Pageable pageable) {
+        return pelangganService.getAllPelanggan(cari, pageable).getContent();
     }
 
     @GetMapping("/{idPelanggan}")
@@ -45,7 +47,7 @@ public class PelangganController {
     }
 
     @DeleteMapping("/{idPelanggan}")
-    public void deletePelanggan(@PathVariable UUID idPelanggan) {
-        pelangganService.deletePelanggan(idPelanggan);
+    public String deletePelanggan(@PathVariable UUID idPelanggan) {
+        return pelangganService.deletePelanggan(idPelanggan);
     }
 }

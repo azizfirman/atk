@@ -1,0 +1,124 @@
+<div class="content" th:fragment="barang">
+    <h4 class="d-inline">
+        <i class="bi bi-box-seam fs-2"></i>
+        <span>Kelola Barang</span>
+    </h4>
+
+    <div class="row mb-4">
+        <div class="col mt-1" style="margin-left: 40px;">
+            <span style="font-weight: 500;" id="subtitleBarang">Menampilkan semua data barang.</span>
+        </div>
+        <div class="col-sm-3">
+            <div class="input-group float-end">
+                <input id="txtCariBarang" type="text" class="form-control form-input" placeholder="Cari">
+                <button id="cariBarang" class="btn btn-primary" type="button">
+                    <i class="bi bi-search"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-responsive" th:if="${totalData >= 1 && currentPage < totalPages}">
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th style="width: 15px">No</th>
+                    <th>Nama Barang</th>
+                    <th>Harga</th>
+                    <th>Stok</th>
+                    <th style="width: 130px;">Aksi</th>
+                </tr>
+            </thead>
+            <tbody th:each="barang, iterStat : ${dataBarang}">
+                <tr
+                    th:class="${barang.stokBarang == 0} ? 'table-danger' : ''">
+                    <td th:text="${iterStat.index + 1}"></td>
+                    <td th:text="${barang.namaBarang}"></td>
+                    <td th:text="${barang.hargaBarang}" class="harga-barang"></td>
+                    <td th:text="${barang.stokBarang}"></td>
+                    <td>
+                        <button class="btn btn-sm btn-outline-warning"
+                                data-bs-toggle="modal"
+                                data-bs-target="#tambahBarangModal"
+                                data-bs-backdrop="static"
+                                th:attr="data-idBarang=${barang.idBarang}, data-namaBarang=${barang.namaBarang}, data-hargaBarang=${barang.hargaBarang}, data-stokBarang=${barang.stokBarang}, edit=true"
+                                title="Edit Barang">
+                                <i class="bi bi-pencil"></i>
+                            </button>
+                        <button class="btn btn-sm btn-outline-danger"
+                                data-bs-toggle="modal"
+                                data-bs-target="#confirmDeleteModal"
+                                th:attr="data-idBarang=${barang.idBarang}, data-namaBarang=${barang.namaBarang}"
+                                title="Hapus Barang">
+                                <i class="bi bi-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="d-flex justify-content-center mt-3" th:if="${totalData > 5 && currentPage < totalPages}">
+        <nav>
+            <ul class="pagination">
+                <!-- Tombol Sebelumnya -->
+                <li class="page-item" th:classappend="${currentPage == 0} ? 'disabled'">
+                    <a class="page-link" th:href="@{/barang(page=${currentPage - 1}, cari=${param.cari})}" aria-label="Previous">
+                        <i class="bi bi-chevron-left"></i>
+                    </a>
+                </li>
+
+                <!-- Halaman Awal -->
+                <li class="page-item" th:classappend="${currentPage == 0} ? 'active'">
+                    <a class="page-link" th:href="@{/barang(page=0, cari=${param.cari})}" th:text="1"></a>
+                </li>
+                <li class="page-item" th:if="${currentPage > 2}">
+                    <span class="page-link">...</span>
+                </li>
+
+                <!-- Halaman di Sekitar Halaman Saat Ini -->
+                <li class="page-item" th:each="i : ${#numbers.sequence(currentPage - 1, currentPage + 1)}"
+                    th:if="${i > 0 and i < totalPages - 1}"
+                    th:classappend="${currentPage == i} ? 'active'">
+                    <a class="page-link" th:href="@{/barang(page=${i}, cari=${param.cari})}" th:text="${i + 1}"></a>
+                </li>
+
+                <!-- Titik-titik Sebelum Halaman Akhir -->
+                <li class="page-item" th:if="${currentPage < totalPages - 3}">
+                    <span class="page-link">...</span>
+                </li>
+
+                <!-- Halaman Akhir -->
+                <li class="page-item" th:classappend="${currentPage == totalPages - 1} ? 'active'">
+                    <a class="page-link" th:href="@{/barang(page=${totalPages - 1}, cari=${param.cari})}" th:text="${totalPages}"></a>
+                </li>
+
+                <!-- Tombol Selanjutnya -->
+                <li class="page-item" th:classappend="${currentPage == totalPages - 1} ? 'disabled'">
+                    <a class="page-link" th:href="@{/barang(page=${currentPage + 1}, cari=${param.cari})}" aria-label="Next">
+                        <i class="bi bi-chevron-right"></i>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="d-flex justify-content-center" th:if="${totalData < 1 || currentPage >= totalPages}">
+        <div class="text-center">
+            <div class="p-5 rounded-circle mt-5">
+                <i class="bi bi-database display-1 text-primary"></i>
+            </div>
+            <p class="fs-7 fw-bold text-muted">Tidak ada data ditemukan</p>
+        </div>
+    </div>
+
+    <button
+        id="tambahBarang"
+        th:data-id-pengguna="${idPengguna}"
+        type="button" class="btn btn-primary btn-lg rounded-circle floating-btn" data-bs-toggle="modal" data-bs-target="#tambahBarangModal" data-bs-backdrop="static">
+        <i class="bi bi-plus-circle"></i>
+    </button>
+
+    <div th:insert="~{dialogs/barang::barang}"></div>
+    <div th:insert="~{dialogs/konfirmasi::konfirmasi}"></div>
+</div>

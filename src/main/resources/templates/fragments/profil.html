@@ -1,0 +1,57 @@
+<div class="content" th:fragment="profil">
+    <h4 class="d-inline">
+        <i class="bi bi-person fs-2"></i>
+        <span>Profil</span>
+    </h4>
+
+    <div class="row mb-4">
+        <div class="col mt-1" style="margin-left: 40px;">
+            <span style="font-weight: 500;" id="subtitle">Menampilkan semua informasi mengenai akun Anda.</span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4 mt-4">
+            <div class="card shadow-sm card-hover p-3">
+                <img class="user-photo mt-3" th:src="${photo != null ? photo : '/img/avatar.png'}">
+
+                <div class="card-body text-center">
+                    <h6 class="card-title" th:text="${namaPengguna}"></h6>
+                    <p class="card-text text-muted" th:text="${username}"></p>
+                    <span id="txtLevelPengguna" th:class="${isAdmin ? 'badge bg-success' : 'badge bg-secondary'}" th:text="${isAdmin ? 'ADMIN' : 'USER'}"></span>
+
+                    <div class="mt-3 d-flex justify-content-center gap-2">
+                        <button class="btn btn-sm btn-outline-warning"
+                            data-bs-toggle="modal"
+                            data-bs-target="#tambahPenggunaModal"
+                            data-bs-backdrop="static"
+                            data-bs-placement="top"
+                            th:attr="data-id=${idPengguna}, data-username=${username}, ganti-role=${isAdmin ? 'ADMIN' : 'USER'}, data-namaPengguna=${namaPengguna}, data-photo=${photo}, reset-password=${password}, edit=true"
+                            th:title="${editPengguna}">
+                            <i class="bi bi-pencil"></i>
+                        </button>
+
+                        <button class="btn btn-sm btn-outline-secondary"
+                            data-bs-toggle="modal"
+                            data-bs-target="#tambahPenggunaModal"
+                            data-bs-backdrop="static"
+                            data-bs-placement="top"
+                            th:attr="data-id=${idPengguna}, data-username=${username}, ganti-role=${isAdmin ? 'ADMIN' : 'USER'}, data-namaPengguna=${namaPengguna}, data-photo=${photo}, reset-password=${password}, password=true"
+                            th:title="${resetPassword}">
+                            <i class="bi bi-key"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-8"> <!-- Mengubah dari col ke col-md-8 -->
+            <div class="container">
+                <h6 class="text-center">Grafik Penjualan Anda Selama Satu Bulan</h6>
+                <canvas id="salesChart" height="135" style="max-height: 320px;" th:attr="data-transaksi=${dataTransaksi}"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <div th:insert="~{dialogs/pengguna::pengguna}"></div>
+</div>

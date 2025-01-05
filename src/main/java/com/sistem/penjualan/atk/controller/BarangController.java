@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sistem.penjualan.atk.entity.Barang;
@@ -25,8 +27,8 @@ public class BarangController {
     private BarangService barangService;
 
     @GetMapping
-    public List<Barang> getAllBarang() {
-        return barangService.getAllBarang();
+    public List<Barang> getAllBarang(@RequestParam(required = false, defaultValue = "") String cari, Pageable pageable) {
+        return barangService.getAllBarang(cari, pageable).getContent();
     }
 
     @GetMapping("/{idBarang}")
@@ -44,8 +46,8 @@ public class BarangController {
         return barangService.updateBarang(barang);
     }
 
-    @DeleteMapping("/{idPengguna}")
-    public void deleteBarang(@PathVariable UUID idBarang) {
-        barangService.deleteBarang(idBarang);
+    @DeleteMapping("/{idBarang}")
+    public String deleteBarang(@PathVariable UUID idBarang) {
+        return barangService.deleteBarang(idBarang);
     }
 }

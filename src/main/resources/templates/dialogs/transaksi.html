@@ -1,0 +1,137 @@
+<div th:fragment="transaksi">
+
+    <!-- Modal Tambah Barang -->
+    <div class="modal fade" id="tambahTransaksiModal" tabindex="-1" aria-labelledby="tambahTransaksiModalLabel" aria-hidden="true" data-bs-backdrop="static">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="tambahTransaksiModalLabel">Tambah Transaksi</h5>
+                    <button type="button" class="btn-close" id="btnBatalkanTransaksi" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <form id="tambahTransaksiForm" novalidate>
+
+                        <!-- Pencarian Barang -->
+                        <div class="row mb-3">
+                            <div class="col-md-5">
+                                <label for="cariBarang" class="form-label">Cari Barang</label>
+                                <div class="dropdown">
+                                    <input type="text" class="form-control" id="cariBarang" placeholder="Masukkan nama barang" autocomplete="off" required/>
+                                    <ul class="dropdown-menu w-100" style="z-index: 1000;" id="dropdownBarang">
+                                        <!-- Daftar barang akan diisi dengan data dari pencarian -->
+                                    </ul>
+                                    <div class="invalid-feedback">Silahkan pilih barang dahulu.</div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-2">
+                                <label for="quantity" class="form-label">Quantity</label>
+                                <input type="number" class="form-control" id="quantity" placeholder="0" min="1" required/>
+                                <div class="invalid-feedback" id="quantityInfo">Wajib diisi.</div>
+                            </div>
+
+                            <div class="col-md-2 divTambahBarang">
+                                <button type="button" class="btn btn-primary" id="tambahBarangBtn">
+                                    <i class="bi bi-plus-circle"></i> Tambah
+                                </button>
+                            </div>
+                        </div>
+
+                        <!--  Total Harga -->
+                        <div class="row mt-4 d-none" id="divTotalHarga">
+                            <div class="col text-end">
+                                <h6>Total Harga : <span id="totalHarga" class="text-primary fs-5">Rp 0</span></h6>
+                            </div>
+                        </div>
+
+                        <!-- Tabel Barang -->
+                        <div class="table-responsive d-none" id="divTabelBarang" style="max-height: 275px; overflow-y: auto;">
+                            <table class="table table-bordered">
+                                <thead class="table-light sticky-top" style="z-index: 500;">
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Nama Barang</th>
+                                        <th>Harga Barang</th>
+                                        <th>Quantity</th>
+                                        <th>Total Harga</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tabelBarang">
+                                    <!-- Data barang akan ditambahkan di sini -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary d-none" id="lanjutTransaksiBtn" data-bs-backdrop="static">
+                        <i class="bi bi-arrow-right-circle"></i> Lanjut
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Konfirmasi Batalkan Transaksi -->
+    <div th:insert="~{dialogs/konfirmasi::konfirmasi}"></div>
+
+     <!-- Modal Konfirmasi Transaksi -->
+     <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true" data-bs-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmationModalLabel">Konfirmasi Transaksi</h5>
+                </div>
+
+                <div class="modal-body">
+                    <table class="table-borderless">
+                        <tr>
+                            <th class="w-25 p-1">Tgl. Transaksi</th>
+                            <th class="p-1" style="width: 12px;">:</th>
+                            <td id="transactionDate" class="form-control-plaintext p-1"></td>
+                        </tr>
+
+                        <tr>
+                            <th class="w-25 p-1">Total Bayar</th>
+                            <th class="p-1" style="width: 12px;">:</th>
+                            <td id="totalAmount" class="form-control-plaintext p-1 fw-bold fs-5"></td>
+                        </tr>
+                    </table>
+
+                    <div class="mt-3 mb-1">
+                        <label for="cariPelanggan" class="form-label fw-bold">Pelanggan</label>
+                        <div class="dropdown">
+                            <input type="text" class="form-control" id="cariPelanggan" placeholder="Cari pelanggan..." autocomplete="off" required/>
+                            <ul class="dropdown-menu w-100" style="z-index: 1000;" id="dropdownPelanggan"></ul>
+                            <div class="invalid-feedback">Silahkan pilih pelanggan dahulu.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer d-flex justify-content-between">
+                    <button type="button" class="btn btn-secondary" id="btnBackToModalTambahTransaksi">
+                        <i class="bi bi-arrow-left-circle"></i> Kembali
+                    </button>
+
+                    <div>
+                        <button
+                            th:attr="data-id-pengguna=${idPengguna}"
+                            type="button" class="btn btn-success ms-2" id="btnCetakTransaksi">
+                            <i class="bi bi-printer"></i> Cetak
+                        </button>
+
+                        <button
+                            th:attr="data-id-pengguna=${idPengguna}"
+                            type="button" class="btn btn-primary ms-2" id="btnSimpanTransaksi">
+                            <i class="bi bi-save"></i> Simpan
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

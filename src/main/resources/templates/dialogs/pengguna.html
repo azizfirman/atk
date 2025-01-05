@@ -1,0 +1,68 @@
+<div th:fragment="pengguna" class="modal fade" id="tambahPenggunaModal" tabindex="-1" aria-labelledby="tambahPenggunaModalLabel" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modal-title">Tambah Pengguna</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="tambahPenggunaForm" novalidate>
+                    <div class="mb-3" id="namaPengguna1">
+                        <label for="namaPengguna" class="form-label">Nama Pengguna <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="namaPengguna" required minlength="3" />
+                        <div class="invalid-feedback">Nama Pengguna wajib diisi minimal 3 karakter.</div>
+                    </div>
+                    <div class="mb-3" id="username1">
+                        <label for="username" class="form-label">Username <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="username" required minlength="5" pattern="^[a-zA-Z0-9_]+$" />
+                        <div id="invalid-feedback-username" class="invalid-feedback">Username wajib diisi minimal 5 karakter dan hanya boleh mengandung huruf, angka, dan garis bawah (_).</div>
+                    </div>
+                    <div class="mb-3" id="role1">
+                        <label for="level" class="form-label">Role <span class="text-danger">*</span></label>
+                        <select class="form-select" id="level" required>
+                            <option value="" disabled selected>Pilih Role</option>
+                            <option value="admin">Admin</option>
+                            <option value="user">User</option>
+                        </select>
+                        <div class="invalid-feedback">Level wajib dipilih.</div>
+                    </div>
+                    <!-- Input Password -->
+                    <div class="mb-3" id="password1">
+                        <label for="password" class="form-label">Password <span class="text-danger">*</span></label>
+                        <div class="input-group">
+                            <input type="password" class="form-control" id="password" required minlength="6" />
+                            <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+                                <i class="bi bi-eye" id="togglePasswordIcon"></i>
+                            </button>
+                        </div>
+                        <div id="invalid-feedback-password" class="invalid-feedback">Password wajib diisi minimal 6 karakter.</div>
+                        <div id="passwordStrength" class="mt-2"></div>
+                    </div>
+                    <!-- Input Konfirmasi Password -->
+                    <div class="mb-3" id="confirmPassword1">
+                        <label for="confirmPassword" class="form-label">Konfirmasi Password <span class="text-danger">*</span></label>
+                        <div class="input-group">
+                            <input type="password" class="form-control" id="confirmPassword" required minlength="6" />
+                            <button class="btn btn-outline-secondary" type="button" id="toggleConfirmPassword">
+                                <i class="bi bi-eye" id="toggleConfirmPasswordIcon"></i>
+                            </button>
+                        </div>
+                        <div id="invalid-feedback-confirm-password" class="invalid-feedback">Konfirmasi Password wajib diisi dan harus sama dengan Password.</div>
+                    </div>
+                    <div class="mb-3" id="uploadPhoto1">
+                        <label for="uploadPhoto" class="form-label">Upload Photo</label>
+                        <input type="file" class="form-control" id="uploadPhoto" accept="image/*"/>
+                        <div class="invalid-feedback">Foto wajib diunggah.</div>
+                    </div>
+                    <!-- <div class="spinner-border" id="loadingSpinner" role="status" style="display: none;">
+                        <span class="visually-hidden">Loading...</span>
+                    </div> -->
+                </form>
+            </div>
+            <div class="modal-footer">
+                <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button> -->
+                <button type="submit" class="btn btn-primary" id="simpanButton">Simpan</button>
+            </div>
+        </div>
+    </div>
+</div>

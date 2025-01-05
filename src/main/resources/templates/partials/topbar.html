@@ -1,4 +1,4 @@
-<div class="top-bar navbar bg-white mb-4 static-top shadow" th:fragment="topbar">
+<div class="top-bar navbar bg-white mb-4 sticky-top shadow" th:fragment="topbar">
     <div class="top-bar-title" th:text="${title}"></div>
     <span class="top-bar-user" th:text="${namaPengguna}"></span>
 
@@ -12,9 +12,9 @@
                 <span class="text" th:text="${profil}"></span>
             </a>
 
-            <a href="/pengguna">
+            <a href="/pengguna" th:if="${isAdmin}">
                 <i class="bi bi-person-gear"></i>
-                <span class="text" th:text="${aturPengguna}"></span>
+                <span class="text" th:text="${kelolaPengguna}"></span>
             </a>
 
             <a href="/logout">

@@ -3,4 +3,17 @@
     <head th:insert="~{partials/header::header}"></head>
     <body th:insert="~{partials/sidebar::sidebar}"></body>
     <body th:insert="~{partials/topbar::topbar}"></body>
+
+    <body th:if="${path == '/home'}" th:insert="~{fragments/home::home}"></body>
+    <body th:if="${path == '/profil'}" th:insert="~{fragments/profil::profil}"></body>
+    <body th:if="${path == '/pengguna'}" th:insert="~{fragments/pengguna::pengguna}"></body>
+
+    <body th:if="${path == '/barang'}" th:insert="~{fragments/barang::barang}"></body>
+    <body th:if="${path == '/laporan'}" th:insert="~{fragments/laporan::laporan}"></body>
+    <body th:if="${path == '/pelanggan'}" th:insert="~{fragments/pelanggan::pelanggan}"></body>
+    <body th:if="${path == '/transaksi'}" th:insert="~{fragments/transaksi::transaksi}"></body>
+
+    <body th:insert="~{fragments/cetak::cetak}"></body>
+    <head th:insert="~{partials/footer::footer}"></head>
+    <body th:insert="~{dialogs/notifikasi::notifikasi}"></body>
 </html>

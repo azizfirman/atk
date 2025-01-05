@@ -1,10 +1,13 @@
 package com.sistem.penjualan.atk.controller;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,8 +28,8 @@ public class TransaksiController {
     private TransaksiService transaksiService;
 
     @GetMapping
-    public List<Transaksi> getAllTransaksi() {
-        return transaksiService.getAllTransaksi();
+    public Page<Map<String, Object>> getAllTransaksi(Pageable pageable) {
+        return transaksiService.getAllTransaksi(pageable);
     }
 
     @GetMapping("/{idTransaksi}")
@@ -35,7 +38,7 @@ public class TransaksiController {
     }
 
     @PostMapping
-    public Transaksi saveTransaksi(@RequestBody Transaksi transaksi) {
+    public List<Transaksi> saveTransaksi(@RequestBody Map<String, Object> transaksi) {
         return transaksiService.saveTransaksi(transaksi);
     }
 

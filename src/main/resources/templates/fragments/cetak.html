@@ -1,0 +1,51 @@
+<div class="container nota-cetak mt-5 mb-5" th:fragment="cetak">
+    <h2 class="text-center text-profesional-cetak title-cetak" th:text="${title}"></h2>
+    <div class="text-end" style="font-size: 12px; margin-bottom: 10px;">Kasir : <span id="kasir"></span></div>
+
+    <div class="mb-3">
+        <table class="hidden-table-cetak table-borderless w-100">
+            <tr>
+                <th>No. Transaksi</th>
+                <td style="width: 12px;">:</td>
+                <td><span id="nomor-transaksi"></span></td>
+            </tr>
+            <tr>
+                <th>Tgl. Transaksi</th>
+                <td>:</td>
+                <td><span id="tanggal-transaksi"></span></td>
+            </tr>
+            <tr>
+                <th>Nama Pelanggan</th>
+                <td>:</td>
+                <td><span id="nama-pelanggan"></span></td>
+            </tr>
+        </table>
+    </div>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Nama Barang</th>
+                <th>Harga Barang</th>
+                <th>Quantity</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody id="tableBarang"></tbody>
+    </table>
+
+    <div class="d-flex justify-content-end mt-3">
+        <div><strong>Total :</strong></div>
+        <div class="total-nominal-cetak"><span id="total"></span></div>
+    </div>
+
+    <div class="mt-5">
+        <div class="text-center mb-5">
+            Jakarta, <span id="tgl-transaksi"><span>
+        </div>
+        <div class="tanda-tangan text-center">
+            <p class="text-profesional" id="nama-pelanggan"></p>
+        </div>
+    </div>
+</div>

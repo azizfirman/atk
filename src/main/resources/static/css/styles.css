@@ -273,3 +273,205 @@
 .profile-card .text {
     font-weight: 500;
 }
+
+.content {
+    flex: 1;
+    padding: 0px 17px;
+    margin-left: 250px;
+    transition: margin-left 0.3s;
+}
+.content.collapsed {
+    margin-left: 75px;
+}
+
+.form-control:focus {
+    box-shadow: none;
+    border-color: #007BFF;
+}
+
+.user-photo {
+    width: 85px;
+    height: 85px;
+    object-fit: cover;
+    margin: auto auto;
+    border-radius: 50%;
+}
+
+.card-hover:hover {
+    transition: 0.3s;
+    transform: translateY(-5px);
+}
+
+.tooltip {
+    color: #000;
+    padding: 5px 10px;
+    position: relative;
+    border-radius: 5px;
+}
+.tooltip::before {
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    position: absolute;
+    border-style: solid;
+}
+
+.floating-btn {
+    right: 35px;
+    width: 75px;
+    height: 75px;
+    bottom: 50px;
+    z-index: 1000;
+    display: flex;
+    color: #FFF;
+    position: fixed;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #DEE2E6;
+    background-color: #0D6EFD;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.4), 0 10px 10px rgba(0, 0, 0, 0.2);
+}
+.floating-btn:hover {
+    transform: translateY(-5px);
+    border: 1px solid #DEE2E6;
+}
+.floating-btn i {
+    font-size: 33px;
+}
+
+
+
+.btn:disabled {
+    background-color: #ccc; /* Warna latar belakang */
+    color: #666; /* Warna teks */
+    border-color: #bbb; /* Warna border */
+}
+
+@media print {
+    .no-print {
+        display: none;
+    }
+}
+.nota-cetak {
+    display: none;
+    padding: 20px;
+    border: 1px solid #000;
+    background-color: #f8f9fa;
+}
+.title-cetak {
+    border-bottom: 2px solid #000; /* Garis bawah judul */
+    padding-bottom: 10px; /* Jarak antara judul dan garis */
+    margin-bottom: 20px; /* Jarak antara garis dan konten di bawahnya */
+}
+.text-profesional-cetak {
+    color: #333;
+    font-weight: bold;
+}
+.total-nominal-cetak {
+    font-size: 17px; /* Ukuran font untuk total nominal */
+    font-weight: bold; /* Menguatkan font */
+    margin-left: 10px;
+}
+.hidden-table-cetak th {
+    width: 140px; /* Lebar kolom untuk judul */
+}
+.hidden-table-cetak td:first-child {
+    width: 200px; /* Lebar kolom label */
+}
+.tanda-tangan-cetak {
+    margin-top: 100px;
+}
+
+.divTambahBarang {
+    margin-top: 32px;
+}
+
+.no-border {
+    padding: 10px 10px;
+    border: none !important;      /* Menghapus border */
+    outline: none !important;     /* Menghapus outline saat fokus */
+    border-radius: 0% !important; /* Menghapus border radius */
+    box-shadow: none !important;  /* Menghapus efek bayangan */
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+footer {
+    padding: 0px 17px;
+    margin-left: 250px;
+    transition: margin-left 0.3s;
+}
+footer.collapsed {
+    margin-left: 75px;
+}
+
+/* Ubah warna latar belakang dan teks tooltip */
+.tooltip-inner {
+    color: #FFF;              /* Warna teks */
+    padding: 10px;            /* Jarak dalam */
+    font-weight: 500;           /* Ketebalan teks */
+    border-radius: 10px;       /* Sudut membulat */
+    background-color: #000; /*Warna latar belakang*/
+}
+
+/* Ubah warna panah tooltip */
+.tooltip.bs-tooltip-top .tooltip-arrow::before {
+    border-top-color: #000; /* Warna panah untuk posisi atas */
+}
+.tooltip.bs-tooltip-bottom .tooltip-arrow::before {
+    border-bottom-color: #000; /* Warna panah untuk posisi bawah */
+}
+.tooltip.bs-tooltip-start .tooltip-arrow::before {
+    border-left-color: #000; /* Warna panah untuk posisi kiri */
+}
+.tooltip.bs-tooltip-end .tooltip-arrow::before {
+    border-right-color: #000; /* Warna panah untuk posisi kanan */
+}
+
+/* Tooltip sukses */
+.tooltip-success.tooltip-inner {
+    background-color: #28a745; /* Hijau */
+    color: #fff;
+}
+.tooltip-success.tooltip-arrow::before {
+    border-color: #28a745;
+}
+
+/* Tooltip kesalahan */
+.tooltip-error.tooltip-inner {
+    background-color: #dc3545; /* Merah */
+    color: #fff;
+}
+.tooltip-error.tooltip-arrow::before {
+    border-color: #dc3545;
+}
+
+/* Menyesuaikan warna input saat flatpickr aktif */
+.flatpickr-input {
+    background-color: #FFF;
+    border-color: #CED4DA;
+    border-radius: 0.375rem;
+    box-shadow: none;
+}
+
+/* Gaya kalender Flatpickr */
+.flatpickr-calendar {
+    z-index: 1050; /* Supaya tampil di atas modal atau dropdown Bootstrap */
+}
+
+.flatpickr-day:hover {
+    background-color: #E9ECEF;
+    border-radius: 0.25rem;
+}
+
+.flatpickr-day.selected {
+    background-color: #0D6EFD;
+    border-radius: 0.25rem;
+    color: #FFF;
+}

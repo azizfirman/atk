@@ -1,0 +1,162 @@
+<div class="content" th:fragment="laporan">
+    <h4 class="d-inline">
+        <i class="bi bi-file-earmark-text fs-2"></i>
+        <span>Laporan Penjualan</span>
+    </h4>
+
+    <div class="row mb-4">
+        <div class="col mt-1" style="margin-left: 40px;">
+            <span style="font-weight: 500;" id="subtitleLaporan">Menampilkan laporan penjualan.</span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12 col-md mb-2">
+            <div class="input-group">
+                <span class="input-group-text">
+                    <i class="bi bi-calendar-event"></i>
+                </span>
+                <input type="text" class="form-control" placeholder="Periode Tanggal" id="dateRange" readonly>
+            </div>
+        </div>
+
+        <div class="col-12 col-md mb-2">
+            <div class="dropdown">
+                <input type="text" class="form-control" id="cariPelanggan" placeholder="Pelanggan" autocomplete="off" required/>
+                <ul class="dropdown-menu w-100" id="dropdownPelanggan"></ul>
+            </div>
+        </div>
+
+        <div class="col-12 col-md mb-2">
+            <div class="dropdown">
+                <input type="text" class="form-control" id="cariBarang" placeholder="Barang" autocomplete="off" required/>
+                <ul class="dropdown-menu w-100" id="dropdownBarang"></ul>
+            </div>
+        </div>
+
+        <div class="col-12 col-md mb-2">
+            <div class="dropdown">
+                <input type="text" class="form-control" id="cariPengguna" placeholder="Kasir" autocomplete="off" required/>
+                <ul class="dropdown-menu w-100" id="dropdownPengguna"></ul>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-auto mb-2">
+            <div class="input-group">
+                <button class="btn btn-primary w-100" type="button" id="btnFilterLaporan">
+                    <i class="bi bi-filter"></i> Filter
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4" th:if="${totalData >= 1 && currentPage < totalPages}">
+        <div class="col text-start align-self-end">
+            <table class="table table-borderless m-0 p-0">
+                <tr class="fs-6 fw-bold">
+                    <td class="m-0 p-0" style="width: 130px;">Total Barang</td>
+                    <td class="m-0 p-0" style="width: 10px;">:</td>
+                    <td class="m-0 p-0" th:text="${totalData}"></td>
+                </tr>
+                <tr class="fs-6 fw-bold">
+                    <td class="m-0 p-0" style="width: 130px;">Total Penjualan</td>
+                    <td class="m-0 p-0" style="width: 10px;">:</td>
+                    <td class="m-0 p-0 text-primary" id="totalSales" th:text="${totalSales}"></td>
+                </tr>
+            </table>
+        </div>
+        <div class="col text-end align-self-end">
+            <button class="btn btn-danger" type="button" id="btnExportPDF">
+                <i class="bi bi-file-earmark-pdf"></i> PDF
+            </button>
+            <button class="btn btn-success" type="button" id="btnExportExcel">
+                <i class="bi bi-file-earmark-excel"></i> EXCEL
+            </button>
+        </div>
+    </div>
+
+    <div class="table-responsive mt-1" th:if="${totalData >= 1 && currentPage < totalPages}">
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th style="width: 15px">No</th>
+                    <th>Nomor Transaksi</th>
+                    <th>Tanggal Transaksi</th>
+                    <th>Nama Pelanggan</th>
+                    <th>Nama Barang</th>
+                    <th>Harga</th>
+                    <th>Jumlah</th>
+                    <th>Total</th>
+                    <th>Kasir</th>
+                </tr>
+            </thead>
+            <tbody th:each="laporan, iterStat : ${dataLaporan}">
+                <tr>
+                    <td th:text="${iterStat.index + 1}"></td>
+                    <td th:text="${laporan.nomorTransaksi}"></td>
+                    <td th:text="${@dates.formatDate(laporan.tanggalTransaksi)}"></td>
+                    <td th:text="${laporan.pelanggan.namaPelanggan}"></td>
+                    <td th:text="${laporan.barang.namaBarang}"></td>
+                    <td th:text="${laporan.barang.hargaBarang}" class="harga-barang"></td>
+                    <td th:text="${laporan.jumlah}"></td>
+                    <td th:text="${laporan.jumlah * laporan.barang.hargaBarang}" class="total-harga"></td>
+                    <td th:text="${laporan.pengguna.namaPengguna}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="d-flex justify-content-center mt-3" th:if="${totalData > 5 && currentPage < totalPages}">
+        <nav>
+            <ul class="pagination">
+                <!-- Tombol Sebelumnya -->
+                <li class="page-item" th:classappend="${currentPage == 0} ? 'disabled'">
+                    <a class="page-link" th:href="@{/laporan(page=${currentPage - 1}, cari=${param.cari})}" aria-label="Previous">
+                        <i class="bi bi-chevron-left"></i>
+                    </a>
+                </li>
+
+                <!-- Halaman Awal -->
+                <li class="page-item" th:classappend="${currentPage == 0} ? 'active'">
+                    <a class="page-link" th:href="@{/laporan(page=0, cari=${param.cari})}" th:text="1"></a>
+                </li>
+                <li class="page-item" th:if="${currentPage > 2}">
+                    <span class="page-link">...</span>
+                </li>
+
+                <!-- Halaman di Sekitar Halaman Saat Ini -->
+                <li class="page-item" th:each="i : ${#numbers.sequence(currentPage - 1, currentPage + 1)}"
+                    th:if="${i > 0 and i < totalPages - 1}"
+                    th:classappend="${currentPage == i} ? 'active'">
+                    <a class="page-link" th:href="@{/laporan(page=${i}, cari=${param.cari})}" th:text="${i + 1}"></a>
+                </li>
+
+                <!-- Titik-titik Sebelum Halaman Akhir -->
+                <li class="page-item" th:if="${currentPage < totalPages - 3}">
+                    <span class="page-link">...</span>
+                </li>
+
+                <!-- Halaman Akhir -->
+                <li class="page-item" th:classappend="${currentPage == totalPages - 1} ? 'active'">
+                    <a class="page-link" th:href="@{/laporan(page=${totalPages - 1}, cari=${param.cari})}" th:text="${totalPages}"></a>
+                </li>
+
+                <!-- Tombol Selanjutnya -->
+                <li class="page-item" th:classappend="${currentPage == totalPages - 1} ? 'disabled'">
+                    <a class="page-link" th:href="@{/laporan(page=${currentPage + 1}, cari=${param.cari})}" aria-label="Next">
+                        <i class="bi bi-chevron-right"></i>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="d-flex justify-content-center" th:if="${totalData < 1 || currentPage >= totalPages}">
+        <div class="text-center mt-4">
+            <div class="p-5 rounded-circle">
+                <i class="bi bi-database display-1 text-primary"></i>
+            </div>
+            <p class="fs-7 fw-bold text-muted">Tidak ada data ditemukan</p>
+        </div>
+    </div>
+</div>

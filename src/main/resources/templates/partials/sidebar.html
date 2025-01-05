@@ -10,7 +10,7 @@
         <span class="text" th:text="${beranda}"></span>
       </a>
 
-      <a href="/barang">
+      <a href="/barang" th:if="${isAdmin}">
         <i class="bi bi-box"></i>
         <span class="text" th:text="${barang}"></span>
       </a>
@@ -25,7 +25,7 @@
         <span class="text" th:text="${pelanggan}"></span>
       </a>
 
-      <a href="/laporan">
+      <a href="/laporan" th:if="${isAdmin}">
         <i class="bi bi-journal-text"></i>
         <span class="text" th:text="${laporan}"></span>
       </a>
